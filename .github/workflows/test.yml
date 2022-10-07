@@ -15,8 +15,6 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - run: gh repo clone $GITHUB_REPOSITORY . --  --branch ${GITHUB_REF#refs/heads/}
-      - run: ls
-      - run: cd $GITHUB_REPOSITORY
       - run: gh pr create --title "PR to staging" --body "testing"
     
 
