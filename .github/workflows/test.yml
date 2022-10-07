@@ -1,5 +1,11 @@
 name: test
 on: 
   pull_request:
-    
-
+    branches:
+      - develop
+    types: [closed]
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh pr create -B staging
