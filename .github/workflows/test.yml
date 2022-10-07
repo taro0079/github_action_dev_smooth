@@ -11,5 +11,7 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - run: gh pr create --title "PR to staging"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
 
