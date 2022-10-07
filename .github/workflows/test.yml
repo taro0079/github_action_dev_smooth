@@ -1,11 +1,15 @@
 name: test
 on: 
-- push
+  pull_request:
+    branches:
+      - develop
+    types: [closed]
+
 
 jobs:
   tag:
     runs-on: ubuntu-latest
-    if: github.event.pull_request
+    if: github.event.pull_request.merged == true
     steps:
       - run: gh repo clone $GITHUB_REPOSITORY . --branch ${GITHUB_REPOSITORY}
       - run: cd $GITHUB_REPOSITORY
