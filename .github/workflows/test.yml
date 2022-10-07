@@ -1,5 +1,15 @@
 name: test
 on: 
   pull_request:
+    branches:
+      - develop
+    types: [closed]
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - run: gh pr create --title "PR to staging"
     
 
