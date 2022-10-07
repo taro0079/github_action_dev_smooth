@@ -16,6 +16,7 @@ jobs:
     steps:
       - run: gh repo clone $GITHUB_REPOSITORY . --  --branch ${GITHUB_REF#refs/heads/}
       - run: echo ${{ github.head_ref }}
+      - run: git checkout ${{ github.head_ref }}
       - run: gh pr create --title "PR to staging" --body "testing" -B staging
     
 
