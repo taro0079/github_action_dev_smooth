@@ -1,15 +1,14 @@
 name: test
 on: 
-  pull_request:
-    branches:
-      - develop
-    types: [closed]
+  push:
 
 jobs:
   tag:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request
     steps:
+      - run: gh repo clone $GITHUB_REPOSITORY . --branch ${GITHUB_REPOSITORY}
+      - run: cd $GITHUB_REPOSITORY
       - run: gh pr create --title "PR to staging" --body "testing"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
