@@ -1,4 +1,6 @@
 print("Hello")
 
 print("test")
-print("ttt")
+print("yyy")
+print("this is test")
+print("hoge")
