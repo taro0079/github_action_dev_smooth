@@ -1,5 +1,22 @@
 name: test
 on: 
   pull_request:
+    branches:
+      - develop
+    types: [closed]
+
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_REPOSITORY: github_action_dev_smooth
+    if: github.event.pull_request.merged == true
+    steps:
+      - run: gh repo clone $GITHUB_REPOSITORY . --  --branch ${GITHUB_REF#refs/heads/}
+      - run: echo ${{ github.head_ref }}
+      - run: git checkout ${{ github.head_ref }}
+      - run: gh pr create --title "PR to staging branch name: ${github.head_ref}" --body "${{ github.ref }}" -B staging
     
 
