@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_REPOSITORY: github_action_dev_smooth
     if: github.event.pull_request.merged == true
     steps:
       - run: gh repo clone $GITHUB_REPOSITORY . --  --branch ${GITHUB_REF#refs/heads/}
